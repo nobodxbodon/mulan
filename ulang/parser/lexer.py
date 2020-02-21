@@ -25,6 +25,7 @@ RULES = [
  'WHILE',
  'LOOP',
  'FOR',
+ '对于',
  'BREAK',
  'CONTINUE',
  'RETURN',
@@ -32,6 +33,7 @@ RULES = [
  'TYPE',
  'USING',
  'IN',
+ '中的',
  'TRY',
  'CATCH',
  'FINALLY',
@@ -110,6 +112,7 @@ lg.add('ELSE', '\\r*\\n*\\s*else\\s*\\r*\\n*', flags=(re.DOTALL))
 lg.add('WHILE', '\\bwhile\\b')
 lg.add('LOOP', '\\bloop\\b')
 lg.add('FOR', '\\bfor\\b')
+lg.add('对于', '\\b对于\\b')
 lg.add('RETURN', '\\breturn\\b')
 lg.add('BREAK', '\\bbreak\\b')
 lg.add('CONTINUE', '\\bcontinue\\b')
@@ -118,6 +121,7 @@ lg.add('TYPE', '\\btype\\b')
 lg.add('USING', '\\busing\\b')
 lg.add('MODULE', '\\bmodule\\b')
 lg.add('IN', '\\bin\\b')
+lg.add('中的', '\\b中的\\b')
 lg.add('TRY', '\\btry\\b')
 lg.add('CATCH', '\\r*\\n*\\s*catch\\s*\\r*\\n*', flags=(re.DOTALL))
 lg.add('FINALLY', '\\r*\\n*\\s*finally\\s*\\r*\\n*', flags=(re.DOTALL))

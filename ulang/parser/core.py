@@ -1555,8 +1555,9 @@ class Parser:
 
     @pg_.production('for_stmt : FOR iterator IN loop_range block')
     @pg_.production('for_stmt : FOR iterator : loop_range block')
+    @pg_.production('for_stmt : 对于 loop_range 中的 iterator block')
     def for_stmt(self, p):
-        target = p[1]
+        target = p[3] if (p[0].getstr() == "对于") else p[1]
         if isinstance(target, list):
             for e in target:
                 if hasattr(e, 'ctx'):
@@ -1569,13 +1570,14 @@ class Parser:
         else:
             target.ctx = ast.Store()
         return ast.For(target=target,
-          iter=(p[3]),
+          iter=(p[1] if (p[0].getstr() == "对于") else p[3]),
           body=(p[4]),
           orelse=[],
           lineno=(self.getlineno(p)),
           col_offset=(self.getcolno(p)))
 
     @pg_.production('for_stmt : stmt FOR iterator IN loop_range')
+    @pg_.production('for_stmt : stmt 对于 loop_range 中的 iterator')
     @pg_.production('for_stmt : stmt FOR iterator : loop_range')
     def single_for_stmt(self, p):
         np = p[1:]
